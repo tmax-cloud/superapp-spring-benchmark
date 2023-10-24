@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sa-benchmark
+  name: sa-benchmark
+  namespace: sa-benchmark
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sa-benchmark
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: sa-benchmark
+    spec:
+      containers:
+      - image: 192.168.173.38:5001/superapp-spring-benchmark:0.0.1
+        name: sa-benchmark
+        resources:
+          limits:
+            cpu: "1"
+            memory: "1Gi"
+          requests:
+            cpu: "1"
+            memory: "1Gi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: sa-benchmark
+  name: sa-benchmark
+  namespace: sa-benchmark
+spec:
+  ports:
+  - name: http
+    port: 8081
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: sa-benchmark
+  type: ClusterIP

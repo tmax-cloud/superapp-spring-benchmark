@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  labels:
+    app.kubernetes.io/instance: sa-benchmark
+    ingress.tmaxcloud.org/name: sa-benchmark
+  name: sa-benchmark
+  namespace: sa-benchmark
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: springboot-echo.cloudqa.link
+    http:
+      paths:
+      - backend:
+          service:
+            name: sa-benchmark
+            port:
+              number: 8081
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - springboot-echo.cloudqa.link
