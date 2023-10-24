@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: tekton-pipeline-run
+  namespace: sa-benchmark
+spec:
+  pipelineRef:
+    name: tekton-pipeline
+  workspaces:
+    - name: pipeline-shared-data
+      persistentvolumeclaim:
+        claimName: maven-source-pvc
