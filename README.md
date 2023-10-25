@@ -1,2 +1,2 @@
 # superapp-spring-benchmark
-testzz
+test
