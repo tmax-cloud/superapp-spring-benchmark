@@ -1,0 +1,10 @@
+server:
+  port: 8085
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,beans,conditions,prometheus
+        exclude: threaddump, heapdump
+    prometheus: 
+        enabled: true
