@@ -22,5 +22,8 @@ public class SuperappSpringBenchmarkApplication implements CommandLineRunner {
         System.out.println("max-keep-alive-requests : " + env.getProperty("server.tomcat.max-keep-alive-requests"));
         System.out.println("max-connections : " + env.getProperty("server.tomcat.max-connections"));
         System.out.println("max-threads : " + env.getProperty("server.tomcat.max-threads"));
+        System.out.println("max-threads : " + env.getProperty("server.tomcat.threads.max"));
+        System.out.println("sleep-time : "+Integer.parseInt(env.getProperty("server.benchmark.sleep-time")));
+
     }
 }
